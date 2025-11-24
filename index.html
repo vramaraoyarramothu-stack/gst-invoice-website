@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GST Invoice Generator</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>GST Invoice Generator</h1>
+      <p>Quickly create printable GST-compliant invoices</p>
+    </header>
+
+    <main>
+      <section class="meta">
+        <div>
+          <label>Invoice No:
+            <input id="invoiceNo" type="text" value="INV-001" />
+          </label>
+        </div>
+        <div>
+          <label>Date:
+            <input id="invoiceDate" type="date" />
+          </label>
+        </div>
+        <div>
+          <label>Place of Supply:
+            <input id="supplyPlace" type="text" placeholder="State" />
+          </label>
+        </div>
+      </section>
+
+      <section class="party">
+        <div class="box">
+          <h3>Seller (From)</h3>
+          <textarea id="seller" placeholder="Business name, address, GSTIN...">Your Company Name
+Address line 1
+City, State - PIN
+GSTIN: </textarea>
+        </div>
+        <div class="box">
+          <h3>Buyer (To)</h3>
+          <textarea id="buyer" placeholder="Buyer name, address, GSTIN...">Buyer Name
+Address line 1
+City, State - PIN
+GSTIN: </textarea>
+        </div>
+      </section>
+
+      <section class="items">
+        <h3>Items</h3>
+        <table id="itemsTable">
+          <thead>
+            <tr>
+              <th style="width:35%">Description</th>
+              <th>HSN/SAC</th>
+              <th>Qty</th>
+              <th>Rate</th>
+              <th>Disc %</th>
+              <th>Tax %</th>
+              <th>Amount</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="itemsBody">
+            <!-- rows injected by JS -->
+          </tbody>
+        </table>
+        <button id="addItemBtn" class="btn">Add Item</button>
+      </section>
+
+      <section class="tax-options">
+        <label>
+          Supply Within State:
+          <input id="withinState" type="checkbox" checked />
+        </label>
+        <label>
+          Show Prices Inclusive of Tax:
+          <input id="pricesInclusive" type="checkbox" />
+        </label>
+      </section>
+
+      <section class="totals">
+        <div>
+          <label>Subtotal: <span id="subtotal">0.00</span></label>
+        </div>
+        <div>
+          <label>CGST: <span id="cgst">0.00</span></label>
+        </div>
+        <div>
+          <label>SGST: <span id="sgst">0.00</span></label>
+        </div>
+        <div>
+          <label>IGST: <span id="igst">0.00</span></label>
+        </div>
+        <div class="grand">
+          <label>Grand Total: <span id="grandTotal">0.00</span></label>
+        </div>
+      </section>
+
+      <section class="actions">
+        <button id="calcBtn" class="btn primary">Calculate</button>
+        <button id="previewBtn" class="btn">Preview / Print</button>
+        <button id="resetBtn" class="btn danger">Reset</button>
+      </section>
+
+      <section id="preview" class="preview hidden">
+        <div class="invoice" id="invoicePreview">
+          <!-- Preview content injected by JS -->
+        </div>
+        <button id="printBtn" class="btn primary">Print Invoice</button>
+      </section>
+    </main>
+
+    <footer>
+      <small>Generated with GST Invoice Generator</small>
+    </footer>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
